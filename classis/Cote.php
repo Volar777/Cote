@@ -34,14 +34,21 @@ class Cote
     }
 
     /**
-     * функция сбора продукции во всем хлеве
+     * функция собирает продукцию у всех животных, зарегистрированных в хлеву
      */
     public function productCollection(){
         foreach ($this->animals as $animal){
-           $animal->productCollection();
+           $animal->countProductionToday();
+        }
+    }
 
-           $this->products[get_class($animal)]['count'] += $animal->productCollection();
-           $this->products[get_class($animal)]['productName'] = $animal->getProductionName();
+    /**
+     * функция собирает продукцию у всех животных, зарегистрированных в хлеву
+     */
+    public function countProducts(){
+        foreach ($this->animals as $animal){
+            $this->products[get_class($animal)]['count'] += $animal->getCountProduction();
+            $this->products[get_class($animal)]['productName'] = $animal->getProductionName();
         }
     }
 
@@ -54,7 +61,6 @@ class Cote
             echo $item['productName'] . ' ' . $item['count'] . PHP_EOL;
         }
     }
-
 
     /**
      * @param string $nameClassAnimal
@@ -70,7 +76,7 @@ class Cote
         $rating = [];
         foreach ($this->animals as $animal){
             if($nameClassAnimal === get_class($animal)){ // получаем объекты нужных животных
-                $rating[$animal->getId()] =$animal->getCountProduction(); // формируем массив [id => количество продукции]
+                $rating[$animal->getId()] = $animal->getCountProduction(); // формируем массив [id => количество продукции]
             }
         }
         arsort($rating);

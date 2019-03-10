@@ -18,4 +18,3 @@ class Chicken extends Animal
      */
     protected  $productName = 'Яиц';
 }
-

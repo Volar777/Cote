@@ -32,19 +32,10 @@ class Animal
     protected $minMaxProduction = [];
 
     /**
-     * функция осуществляет сбор продукции
+     * функция собирать продукцию у данного животного
      */
     public function countProductionToday(){
         $this->countProduction = rand($this->minMaxProduction[0],$this->minMaxProduction[1]);
-    }
-
-    /**
-     * @return int
-     * функция собирает и возвращает количество собранной продукции
-     */
-    public function productCollection(){
-        $this->countProductionToday();
-        return $this->countProduction;
     }
 
     /**
@@ -73,11 +64,9 @@ class Animal
 
     /**
      * @return int
-     * функция возвращает количество собранной продукции
+     * функция возвращает количество собранной продукции у данного животного
      */
     public function getCountProduction(){
         return $this->countProduction;
     }
-
-
 }
